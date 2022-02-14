@@ -14,11 +14,15 @@ def monitor():
     r = requests.get('https://www.trenord.it/rest/cta/tariff?id=79')
 
     while (int(r.status_code) == 200):
-        r = requests.get('https://www.trenord.it/rest/cta/tariff?id=79')
+        try:
+            r = requests.get('https://www.trenord.it/rest/cta/tariff?id=79')
 
-        hook.send("Aprica life back in stock\nSTOCK => " + str(r.json()['units']))
-    
-        sleep(1800)
+            hook.send("Aprica life back in stock\nSTOCK => " + str(r.json()['units']))
+        
+            sleep(1800)
+        except:
+            hook.send('ERROR')
+
     
     hook.send("Aprica monitor stopped")
 
