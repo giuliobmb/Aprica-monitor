@@ -19,6 +19,8 @@ def monitor():
             hook.send("Aprica life back in stock\nSTOCK => " + r.json()['units'])
     
     sleep(1)
+    
+    hook.send("Aprica monitor stopped")
 
 
 monitor()
